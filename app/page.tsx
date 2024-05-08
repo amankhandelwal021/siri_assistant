@@ -4,8 +4,8 @@ import Sidebar from "@/sections/Sidebar";
 export default function Home() {
   return (
     <main className="flex w-full">
-    <Sidebar/>
-    <Dashboard/>
+      <Sidebar />
+      <Dashboard />
     </main>
   );
 }
