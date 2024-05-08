@@ -1,9 +1,86 @@
-import React from 'react'
+"use client";
 
-const Sidebar = () => {
+import React, { useState } from 'react'
+import { GiHamburgerMenu } from "react-icons/gi";
+import { GoPlus } from "react-icons/go";
+import { FiMessageSquare } from "react-icons/fi";
+import { IoSettingsSharp } from "react-icons/io5";
+import { FaChevronDown } from "react-icons/fa";
+
+
+const Sidebar: any = () => {
+
+  const recentSearch: any = [
+    {
+      prompt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, itaque."
+    },
+    {
+      prompt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, itaque."
+    },
+    {
+      prompt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, itaque."
+    },
+    {
+      prompt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, itaque."
+    },
+    {
+      prompt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, itaque."
+    },
+    {
+      prompt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, itaque."
+    },
+    {
+      prompt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, itaque."
+    },
+    {
+      prompt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, itaque."
+    },
+    {
+      prompt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, itaque."
+    },
+    {
+      prompt: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, itaque."
+    },
+  ]
+
+  const [searchCount, setSearchCount] = useState(5);
+  console.log("searchCount", searchCount)
+
   return (
-    <div>
-      
+    <div className='w-[20%] bg-[#1E1F20] h-screen p-5'>
+      <GiHamburgerMenu className="text-white text-xl" />
+
+      <button className='text-[#666667] flex items-center space-x-3 bg-[#1A1A1C] px-4 py-2 rounded-full mt-16'>
+        <GoPlus className='text-lg font-extrabold' />
+        <p className='text-sm font-semibold'>New Chat</p>
+      </button>
+
+      <div className='mt-7'>
+        <p className="text-white px-4 text-sm">Recent</p>
+        <div className={`space-y-1 ${searchCount > 5 ? "max-h-66" : "max-h-44"} overflow-scroll no-scrollbar`}>
+          {recentSearch && recentSearch.length > 0 && recentSearch.slice(0, searchCount).map((search: any, index: number) => (
+            <div className='text-[#C4C7C5] flex items-center space-x-4 hover:text-white hover:bg-[#444746] hover:cursor-pointer duration-300 px-4 py-1 rounded-full'>
+              <FiMessageSquare className='text-4xl' />
+              <p className='text-sm line-clamp-1 font-medium'>{search.prompt}</p>
+            </div>
+          ))}
+        </div>
+        <div className='flex items-center text-[#C4C7C5] text-sm space-x-4 hover:text-white hover:bg-[#444746] hover:cursor-pointer duration-300 px-4 py-2 rounded-full mt-3'
+          onClick={() => searchCount > 5 ? setSearchCount(5) : setSearchCount(10)}
+        >
+          <FaChevronDown />
+          <p>{searchCount > 5 ? "Show Less" : "Show More"}</p>
+        </div>
+      </div>
+      <div className='flex items-center space-x-3 mt-20'>
+        <IoSettingsSharp className='text-lg' />
+        <p className='font-medium'>Settings</p>
+      </div>
+      <div className='text-xs font-medium leading-5	mt-5'>
+        <p>Bhagwanpura, Alwar, Rajasthan, India
+          <span className='text-[#96C7FA]'> Based on your places (Home) • Update location</span>
+        </p>
+      </div>
     </div>
   )
 }
