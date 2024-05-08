@@ -4,13 +4,27 @@ import Prompt from "@/components/Prompt";
 import React from "react";
 
 const Dashboard = () => {
-  const CardsItems = [{}, {}, {}, {}];
+  const CardsItems = [
+    {
+      text: " What are tips for pro coder What are tips for pro coder What are tips for pro coder.",
+    },
+    {
+      text: " What are tips for pro coder What are tips for pro coder What are tips for pro coder.",
+    },
+    {
+      text: " What are tips for pro coder What are tips for pro coder What are tips for pro coder.",
+    },
+    {
+      text: " What are tips for pro coder What are tips for pro coder What are tips for pro coder.",
+    },
+  ];
   return (
-    <div className="flex-col px-10 bg-black py-7 w-full space-y-10">
+    <div className="flex-col px-10 py-3 bg-black w-full space-y-10 max-w-[80%]">
       <Navbar />
-      <div className="flex-col justify-start items-center space-y-3">
+      <div className="flex justify-center items-center">
+      <div className="flex-col justify-center items-center space-y-3">
         <div>
-          <p className="gradient-text text-6xl font-semibold font-sans tracking-wider">
+          <p className="gradient-text text-6xl font-semibold font-sans tracking-wide">
             Hey, Ezee
           </p>
         </div>
@@ -20,8 +34,15 @@ const Dashboard = () => {
           </p>
         </div>
       </div>
-      <HomeCards />
+      <div className="grid grid-cols-5 gap-5 pt-14">
+        {CardsItems.map((elem, index) => (
+          <HomeCards key={index} text={elem.text} />
+        ))}
+      </div>
+      </div>
+      <div className="fixed bottom-10 left-auto ml-20 w-[70%]">
       <Prompt />
+      </div>
     </div>
   );
 };
