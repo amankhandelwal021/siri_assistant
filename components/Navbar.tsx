@@ -12,7 +12,7 @@ const Navbar = () => {
         {" "}
         SIRI 2.O
       </div>
-      <div className="flex -space-x-1 overflow-hidden h-10 w-10 cursor-pointer duration-300">
+      {/* <div className="flex -space-x-1 overflow-hidden h-10 w-10 cursor-pointer duration-300">
         <Image
           className="inline-block bg-gray-300 p-1 h-full w-full rounded-full"
           src={Avatar}
@@ -20,7 +20,7 @@ const Navbar = () => {
           width={5}
           height={5}
         />
-      </div>
+      </div> */}
       <SignIn/>
     </div>
   );
