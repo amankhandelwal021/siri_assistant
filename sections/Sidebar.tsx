@@ -55,17 +55,17 @@ const Sidebar: any = () => {
         <p className='text-sm font-semibold'>New Chat</p>
       </button>
 
-      <div className='mt-7 h-[350px]'>
-        <p className="text-white  text-sm">Recent</p>
+      <div className='mt-7 h-[350px] space-y-2'>
+        <p className="text-white  text-sm pl-3">Recent</p>
         <div className={`space-y-1 ${searchCount > 5 ? "max-h-72" : "max-h-44"} overflow-scroll no-scrollbar`}>
           {recentSearch && recentSearch.length > 0 && recentSearch.slice(0, searchCount).map((search: any, index: number) => (
-            <div className='text-[#C4C7C5] flex items-center space-x-4 hover:text-white hover:bg-[#444746] hover:cursor-pointer duration-300 py-1 rounded-full'>
+            <div className='text-[#C4C7C5] flex items-center space-x-2 hover:text-white hover:bg-[#444746] hover:cursor-pointer duration-300 py-1 px-3 rounded-full'>
               <FiMessageSquare className='text-4xl' />
               <p className='text-sm line-clamp-1 font-medium'>{search.prompt}</p>
             </div>
           ))}
         </div>
-        <div className='flex items-center text-[#C4C7C5] text-sm space-x-4 hover:text-white hover:bg-[#444746] hover:cursor-pointer duration-300 py-2 rounded-full mt-3'
+        <div className='flex items-center text-[#C4C7C5] text-sm space-x-4 hover:text-white hover:bg-[#444746] hover:cursor-pointer duration-300 py-2 px-3 w-fit rounded-full mt-3'
           onClick={() => searchCount > 5 ? setSearchCount(5) : setSearchCount(10)}
         >
           <FaChevronDown />

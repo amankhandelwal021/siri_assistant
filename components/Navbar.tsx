@@ -1,8 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import Avatar from "../public/assets/avatar.svg";
+import { signIn } from 'next-auth/react';
+import { SignIn } from "./sign-in";
 
 const Navbar = () => {
+  
   return (
     <div className="flex justify-between items-center w-full">
       <div className="text-white text-2xl font-semibold font-sans tracking-widest cursor-pointer duration-300">
@@ -18,6 +21,7 @@ const Navbar = () => {
           height={5}
         />
       </div>
+      <SignIn/>
     </div>
   );
 };
