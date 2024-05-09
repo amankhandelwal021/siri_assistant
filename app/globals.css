@@ -16,6 +16,18 @@
   }
 }
 
+@layer utilities {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+     /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+    }
+  }
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -30,4 +42,11 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.gradient-text {
+  background: linear-gradient(to bottom, #6c11ff, #b4cddea3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
