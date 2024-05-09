@@ -21,7 +21,7 @@ const Dashboard = () => {
   return (
     <div className="flex-col px-10 py-3 bg-black w-full space-y-10 max-w-[80%]">
       <Navbar />
-      <div className="flex-col justify-center items-center mx-auto">
+      <div className="flex-col justify-center items-center mx-auto w-[850px]">
       <div className="flex-col justify-center items-center space-y-3">
         <div>
           <p className="gradient-text text-6xl font-semibold font-sans tracking-wide">
@@ -39,10 +39,10 @@ const Dashboard = () => {
           <HomeCards key={index} text={elem.text} />
         ))}
       </div>
-    
-      <div className="fixed bottom-10 left-auto ml-28 w-[70%]">
-      <Prompt />
       </div>
+    
+      <div className="fixed bottom-10 left-auto ml-36 w-[65%]">
+      <Prompt />
       </div>
     </div>
   );
