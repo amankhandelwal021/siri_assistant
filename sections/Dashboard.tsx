@@ -1,7 +1,9 @@
+"use client";
+
 import HomeCards from "@/components/HomeCards";
 import Navbar from "@/components/Navbar";
 import Prompt from "@/components/Prompt";
-import React from "react";
+import React, { useState } from "react";
 
 const Dashboard = () => {
   const CardsItems = [
@@ -18,31 +20,33 @@ const Dashboard = () => {
       text: " What are tips for pro coder What are tips for pro coder What are tips for pro coder.",
     },
   ];
+
+  const [profile, setProfile] = useState<any>(null);
   return (
-    <div className="flex-col px-10 py-3 bg-black w-full space-y-10 max-w-[80%]">
-      <Navbar />
+    <div className="flex-col px-10 py-3 bg-[#131314] w-full space-y-10 max-w-[80%]">
+      <Navbar profile={profile} setProfile={setProfile} />
       <div className="flex-col justify-center items-center mx-auto w-[850px]">
-      <div className="flex-col justify-center items-center space-y-3">
-        <div>
-          <p className="gradient-text text-6xl font-semibold font-sans tracking-wide">
-            Hey, Ezee
-          </p>
+        <div className="flex-col justify-center items-center space-y-3 tracking-tighter">
+          <div>
+            <p className="gradient-text text-6xl font-semibold">
+              Hey, {profile && profile.name ? profile.name.split(" ")[0] : "there!"}
+            </p>
+          </div>
+          <div className="text-[#444746] text-6xl font-semibold">
+            <p>
+              How can I help you today?
+            </p>
+          </div>
         </div>
-        <div className="text-[#3d3d3d] text-4xl font-semibold font-sans ">
-          <p>
-            I'm <span className="">happy to help! What can I do for you?</span>
-          </p>
+        <div className="grid grid-cols-4 gap-10 pt-28">
+          {CardsItems.map((elem, index) => (
+            <HomeCards key={index} text={elem.text} />
+          ))}
         </div>
       </div>
-      <div className="grid grid-cols-5 gap-5 pt-14">
-        {CardsItems.map((elem, index) => (
-          <HomeCards key={index} text={elem.text} />
-        ))}
-      </div>
-      </div>
-    
-      <div className="fixed bottom-10 left-auto ml-36 w-[65%]">
-      <Prompt />
+
+      <div className="fixed bottom-10 left-auto ml-36 w-[80%]">
+        <Prompt />
       </div>
     </div>
   );

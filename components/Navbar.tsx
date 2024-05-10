@@ -1,16 +1,15 @@
 import Image from "next/image";
 import React from "react";
 import Avatar from "../public/assets/avatar.svg";
-import { signIn } from 'next-auth/react';
-import { SignIn } from "./sign-in";
+import GoogleLogin from "./GoogleLogin";
 
-const Navbar = () => {
+const Navbar = ({profile, setProfile}:any) => {
   
   return (
     <div className="flex justify-between items-center w-full">
-      <div className="text-white text-2xl font-semibold font-sans tracking-widest cursor-pointer duration-300">
+      <div className="text-[#CACCC2] text-xl font-medium cursor-pointer duration-300">
         {" "}
-        SIRI 2.O
+        Siri Assistant
       </div>
       {/* <div className="flex -space-x-1 overflow-hidden h-10 w-10 cursor-pointer duration-300">
         <Image
@@ -21,7 +20,7 @@ const Navbar = () => {
           height={5}
         />
       </div> */}
-      <SignIn/>
+      <GoogleLogin profile={profile} setProfile={setProfile}/>
     </div>
   );
 };

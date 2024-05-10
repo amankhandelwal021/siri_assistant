@@ -44,20 +44,19 @@ const Sidebar: any = () => {
   ]
 
   const [searchCount, setSearchCount] = useState(5);
-  console.log("searchCount", searchCount)
 
   return (
     <div className='w-[20%] bg-[#1E1F20] h-screen px-7 py-5'>
-      <GiHamburgerMenu className="text-white text-xl" />
+      <GiHamburgerMenu className="text-white text-xl hover:cursor-pointer" />
 
       <button className='text-[#666667] flex items-center space-x-3 bg-[#1A1A1C] px-4 py-2 rounded-full mt-16'>
         <GoPlus className='text-lg font-extrabold' />
         <p className='text-sm font-semibold'>New Chat</p>
       </button>
 
-      <div className='mt-7 h-[350px] space-y-2'>
+      <div className='mt-7 h-[330px] space-y-2'>
         <p className="text-white  text-sm pl-3">Recent</p>
-        <div className={`space-y-1 ${searchCount > 5 ? "max-h-72" : "max-h-44"} overflow-scroll no-scrollbar`}>
+        <div className={`space-y-1 ${searchCount > 5 ? "max-h-72" : "max-h-44"} overflow-scroll no-scrollbar duration-300`}>
           {recentSearch && recentSearch.length > 0 && recentSearch.slice(0, searchCount).map((search: any, index: number) => (
             <div className='text-[#C4C7C5] flex items-center space-x-2 hover:text-white hover:bg-[#444746] hover:cursor-pointer duration-300 py-1 px-3 rounded-full'>
               <FiMessageSquare className='text-4xl' />
