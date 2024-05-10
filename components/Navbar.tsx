@@ -9,7 +9,7 @@ const Navbar = ({profile, setProfile}:any) => {
     <div className="flex justify-between items-center w-full">
       <div className="text-[#CACCC2] text-xl font-medium cursor-pointer duration-300">
         {" "}
-        Siri Assistant
+        Gemini
       </div>
       {/* <div className="flex -space-x-1 overflow-hidden h-10 w-10 cursor-pointer duration-300">
         <Image

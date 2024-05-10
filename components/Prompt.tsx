@@ -108,7 +108,9 @@ const Prompt = ({ prompt, setPrompt, setIsSearch }: any) => {
         </div>
         {prompt && (
           <div className="text-[#C4C7C5] flex items-center space-x-2 hover:text-white hover:bg-[#444746] hover:cursor-pointer duration-300 p-2.5 rounded-full"
-          onClick={() => setIsSearch(true)}
+          onClick={() => {
+            setIsSearch(true)
+          }}
           >
             <VscSend className="text-2xl" />
           </div>
