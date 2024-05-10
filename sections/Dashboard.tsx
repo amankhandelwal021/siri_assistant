@@ -38,7 +38,7 @@ const Dashboard = () => {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-10 pt-28">
+        <div className="grid grid-cols-4 gap-10 pt-28ro">
           {CardsItems.map((elem, index) => (
             <HomeCards key={index} text={elem.text} />
           ))}

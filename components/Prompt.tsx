@@ -6,7 +6,7 @@ import { LuImagePlus } from "react-icons/lu";
 
 const Prompt = () => {
 
-  // const apiKey = "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";
+  // const apiKey = process.env.OPENAI_API_KEY;
   // const apiUrl = "https://api.openai.com/v1/audio/transcriptions";
 
   // const model = "whisper-1";
