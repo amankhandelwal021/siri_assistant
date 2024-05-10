@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import { PiMicrophoneFill } from "react-icons/pi";
 import { LuImagePlus } from "react-icons/lu";
+import { VscSend } from "react-icons/vsc";
 
-const Prompt = () => {
+
+const Prompt = ({ prompt, setPrompt, setIsSearch }: any) => {
 
   // const apiUrl = "https://api.openai.com/v1/audio/transcriptions";
 
@@ -93,6 +95,8 @@ const Prompt = () => {
       <input
         type="text"
         placeholder="Enter your prompt here..."
+        value={prompt}
+        onChange={(e:any) => setPrompt(e.target.value)}
         className="placeholder:text-[#8d8d8f] outline-none bg-transparent w-full text-white"
       />
       <div className="flex justify-center items-center space-x-2">
@@ -102,6 +106,13 @@ const Prompt = () => {
         <div className="text-[#C4C7C5] flex items-center space-x-2 hover:text-white hover:bg-[#444746] hover:cursor-pointer duration-300 p-2.5 rounded-full">
           <LuImagePlus className="text-2xl" />
         </div>
+        {prompt && (
+          <div className="text-[#C4C7C5] flex items-center space-x-2 hover:text-white hover:bg-[#444746] hover:cursor-pointer duration-300 p-2.5 rounded-full"
+          onClick={() => setIsSearch(true)}
+          >
+            <VscSend className="text-2xl" />
+          </div>
+        )}
       </div>
 
       {/* <div>
