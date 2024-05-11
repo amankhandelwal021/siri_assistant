@@ -13,7 +13,7 @@ const Chat = ({ chat }:any) => {
             utterance.rate = rate;
             utterance.volume = volume;
 
-            window.speechSynthesis.speak(utterance);
+            // window.speechSynthesis.speak(utterance);
         } else {
             console.log('Speech synthesis not supported');
         }

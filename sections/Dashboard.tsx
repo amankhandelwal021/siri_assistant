@@ -6,7 +6,7 @@ import Prompt from "@/components/Prompt";
 import React, { useEffect, useRef, useState } from "react";
 import Chat from "./Chat";
 
-const Dashboard = () => {
+const Dashboard = ({ setActivity }: any) => {
   const CardsItems = [
     {
       text: " What are tips for pro coder What are tips for pro coder What are tips for pro coder.",
@@ -38,19 +38,38 @@ const Dashboard = () => {
       let parsedChats = JSON.parse(localChats);
       setChats(parsedChats)
     }
+  }, []);
 
-    // if (chatContainerRef) {
-    //   chatContainerRef.current.scrollTo({
-    //     top: chatContainerRef.current.scrollHeight,
-    //     behavior: 'smooth' 
-    //   });
-    // }
-  }, [])
+  useEffect(() => {
+    if (chats.length > 0 && chats.length === 1) {
+      setActivity((prevState: any) => [...prevState, {
+        recent: chats[0].prompt,
+        chats: chats
+      }])
+
+    const localActivity = localStorage.getItem('activity');
+
+    if (localActivity) {
+      let parsedActivity = JSON.parse(localActivity);
+      parsedActivity = [...parsedActivity, {
+        recent: chats[0].prompt,
+        chats: chats
+      }];
+      localStorage.setItem('activity', JSON.stringify(localActivity));
+    } else {
+      localStorage.setItem("activity", JSON.stringify(
+        [{
+          recent: chats[0].prompt,
+          chats: chats
+        }]
+      ));
+    }
+  }
+  }, [chats])
 
   const response = "I'm Gemini, the best way to directly access Google AI. I'm trained on large amounts of publicly available data and I can communicate and generate human-like text in response to a wide range of questions. Let me know if you'd like to learn more, or just try me out and see what I can do for you."
 
   useEffect(() => {
-
     if (isSearch) {
       setChats((prevState: any) => [...prevState,
       {
@@ -86,7 +105,7 @@ const Dashboard = () => {
       if (chatContainerRef.current) {
         chatContainerRef.current.scrollTo({
           top: chatContainerRef.current.scrollHeight,
-          behavior: 'smooth' 
+          behavior: 'smooth'
         });
       }
     }
