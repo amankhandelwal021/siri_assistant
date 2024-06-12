@@ -96,7 +96,7 @@ const Prompt = ({ prompt, setPrompt, setIsSearch }: any) => {
         type="text"
         placeholder="Enter your prompt here..."
         value={prompt}
-        onChange={(e:any) => setPrompt(e.target.value)}
+        onChange={(e: any) => setPrompt(e.target.value)}
         className="placeholder:text-[#8d8d8f] outline-none bg-transparent w-full text-white"
       />
       <div className="flex justify-center items-center space-x-2">
@@ -108,9 +108,9 @@ const Prompt = ({ prompt, setPrompt, setIsSearch }: any) => {
         </div>
         {prompt && (
           <div className="text-[#C4C7C5] flex items-center space-x-2 hover:text-white hover:bg-[#444746] hover:cursor-pointer duration-300 p-2.5 rounded-full"
-          onClick={() => {
-            setIsSearch(true)
-          }}
+            onClick={() => {
+              setIsSearch(true)
+            }}
           >
             <VscSend className="text-2xl" />
           </div>

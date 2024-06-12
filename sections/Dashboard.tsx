@@ -6,7 +6,11 @@ import Prompt from "@/components/Prompt";
 import React, { useEffect, useRef, useState } from "react";
 import Chat from "./Chat";
 
-const Dashboard = ({ setActivity }: any) => {
+const Dashboard = ({ chats, setChats, activity, setActivity, currentChatIndex, isNewActivity, setIsNewActivity }: any) => {
+  console.log("activity", activity)
+  console.log("chats", chats)
+  console.log("isNewActivity", isNewActivity)
+
   const CardsItems = [
     {
       text: " What are tips for pro coder What are tips for pro coder What are tips for pro coder.",
@@ -29,42 +33,67 @@ const Dashboard = ({ setActivity }: any) => {
   const [prompt, setPrompt] = useState<any>(null);
   const [isSearch, setIsSearch] = useState<any>(null);
 
-  const [chats, setChats] = useState<any>([]);
-
   useEffect(() => {
     const localChats = localStorage.getItem('chats');
+    const localActivity = localStorage.getItem('activity');
 
     if (localChats) {
       let parsedChats = JSON.parse(localChats);
-      setChats(parsedChats)
+      setChats(parsedChats);
+    } else {
+    }
+
+    if (localActivity) {
+      let parsedActivity = JSON.parse(localActivity);
+      setActivity(parsedActivity);
+    } else {
     }
   }, []);
 
   useEffect(() => {
-    if (chats.length > 0 && chats.length === 1) {
-      setActivity((prevState: any) => [...prevState, {
-        recent: chats[0].prompt,
-        chats: chats
-      }])
-
-    const localActivity = localStorage.getItem('activity');
-
-    if (localActivity) {
-      let parsedActivity = JSON.parse(localActivity);
-      parsedActivity = [...parsedActivity, {
-        recent: chats[0].prompt,
-        chats: chats
-      }];
-      localStorage.setItem('activity', JSON.stringify(localActivity));
-    } else {
-      localStorage.setItem("activity", JSON.stringify(
-        [{
-          recent: chats[0].prompt,
-          chats: chats
-        }]
-      ));
+    if (chats.length > 0) {
+      if (chatContainerRef.current) {
+        const { scrollHeight } = chatContainerRef.current;
+        if (scrollHeight !== undefined) {
+          chatContainerRef.current.scrollTo({
+            top: scrollHeight,
+            behavior: 'smooth'
+          });
+        } else {
+          console.error('scrollHeight is undefined');
+        }
+      }
     }
-  }
+  }, [chats])
+
+  useEffect(() => {
+    if (chats.length > 0 && currentChatIndex) {
+
+      if (activity.length === 0) {
+        setActivity([
+          { recent: chats[0].prompt, chats: chats }
+        ])
+      }
+
+      const localActivity = localStorage.getItem('activity');
+
+      if (localActivity) {
+        let parsedActivity = JSON.parse(localActivity);
+
+        if (isNewActivity) {
+          parsedActivity.push({ recent: chats[0].prompt, chats: chats })
+        } else {
+          parsedActivity[currentChatIndex].chats = chats;
+        }
+        localStorage.setItem('activity', JSON.stringify(parsedActivity));
+        setActivity(parsedActivity);
+
+      } else {
+        localStorage.setItem("activity", JSON.stringify(
+          [{ recent: chats[0].prompt, chats: chats }]
+        ));
+      }
+    }
   }, [chats])
 
   const response = "I'm Gemini, the best way to directly access Google AI. I'm trained on large amounts of publicly available data and I can communicate and generate human-like text in response to a wide range of questions. Let me know if you'd like to learn more, or just try me out and see what I can do for you."
@@ -78,6 +107,18 @@ const Dashboard = ({ setActivity }: any) => {
         isLive: true
       }
       ]);
+
+      if (chatContainerRef.current) {
+        const { scrollHeight } = chatContainerRef.current;
+        if (scrollHeight !== undefined) {
+          chatContainerRef.current.scrollTo({
+            top: scrollHeight,
+            behavior: 'smooth'
+          });
+        } else {
+          console.error('scrollHeight is undefined');
+        }
+      }
 
       const localChats = localStorage.getItem('chats');
 
@@ -101,15 +142,14 @@ const Dashboard = ({ setActivity }: any) => {
 
       setPrompt("")
       setIsSearch(false);
-
-      if (chatContainerRef.current) {
-        chatContainerRef.current.scrollTo({
-          top: chatContainerRef.current.scrollHeight,
-          behavior: 'smooth'
-        });
-      }
     }
   }, [isSearch, prompt]);
+
+  useEffect(() => {
+    if (chats.length > 0) {
+      setIsNewActivity(false);
+    }
+  }, [chats])
 
   return (
     <div className="flex-col px-10 py-3 bg-[#131314] w-full space-y-10 max-w-[80%]">
