@@ -8,11 +8,6 @@ import { VscSend } from "react-icons/vsc";
 
 const Prompt = ({ prompt, setPrompt, setIsSearch }: any) => {
 
-  // const apiUrl = "https://api.openai.com/v1/audio/transcriptions";
-
-  // const model = "whisper-1";
-  // const responseFormat = "text";
-
   const [recording, setRecording] = useState<any>(false);
   const [audioStream, setAudioStream] = useState<any>(null);
   const [mediaRecorder, setMediaRecorder] = useState<any>(null);
@@ -54,41 +49,6 @@ const Prompt = ({ prompt, setPrompt, setIsSearch }: any) => {
     const audio = new Audio(audioUrl);
     audio.play();
   };
-
-  // const generateText = async () => {
-
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Authorization", `Bearer ${apiKey}`);
-  //   myHeaders.append("Content-Type", "multipart/form-data");
-
-  //   var formdata:any = new FormData();
-
-  //   let file = {
-  //     uri: "/public/test_audio.oog",
-  //   };
-
-  //   formdata.append("file", {
-  //     ...file,
-  //     type: mimeType,
-  //     name: file.uri.split("/").pop(),
-  //   });
-  //   formdata.append("model", model);
-  //   formdata.append("response_format", responseFormat);
-
-  //   var requestOptions:any = {
-  //     method: "POST",
-  //     headers: myHeaders,
-  //     body: formdata,
-  //     redirect: "follow",
-  //   };
-
-  //   fetch(`${apiUrl}`, requestOptions)
-  //     .then((response) => response.text())
-  //     .then((result) => {
-  //       console.log(result);
-  //     })
-  //     .catch((error) => console.log("error", error));
-  // };
 
   return (
     <div className="flex items-center justify-start space-x-5 bg-[#1E1F20] px-7 py-2 w-[70%] rounded-full">
